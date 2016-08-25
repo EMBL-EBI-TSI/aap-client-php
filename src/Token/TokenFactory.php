@@ -25,14 +25,17 @@ final class TokenFactory {
       'aud' => 'workbench.ebi.ac.uk',
       'sub' => 'psafont@ebi.ac.uk',
     ];
-    return [ ['Correct token', JWSFactory::createJWSToCompactJSON(
-      $claims,
-      $this->private_key,
-      [
-        'crit' => ['exp', 'aud'],
-        'alg' => 'RS256',
+    return [
+      [ 'Correct token',
+        JWSFactory::createJWSToCompactJSON(
+          $claims,
+          $this->private_key,
+          [
+            'crit' => ['exp', 'aud'],
+            'alg' => 'RS256',
+          ])
       ]
-    )]];
+    ];
   }
 }
 ?>

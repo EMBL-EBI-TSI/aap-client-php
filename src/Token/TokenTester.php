@@ -37,7 +37,7 @@ class TokenTester
 
     $claims = array('iss', 'aud', 'sub', 'exp', 'iat', 'name', 'admin');
     foreach ($claims as $claim) {
-      echo chr(9) . $claim . ': ' . ($jws->hasClaim($claim) ? $jws->getClaim($claim) : 'false') .  PHP_EOL;
+      echo chr(9) . $claim . ': ' . ($jws->hasClaim($claim) ? $jws->getClaim($claim) : 'NIL') .  PHP_EOL;
     }
 
     $checkmate = CheckerManagerFactory::createClaimCheckerManager(
