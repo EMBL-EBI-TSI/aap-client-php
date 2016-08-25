@@ -1,0 +1,5 @@
+{
+    "require": {
+        "Spomky-Labs/jose": "^5.0"
+    }
+}
