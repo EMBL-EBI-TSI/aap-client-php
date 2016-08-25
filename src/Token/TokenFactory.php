@@ -2,8 +2,6 @@
 
 namespace Token;
 
-require_once __DIR__ . '/vendor/autoload.php';
-
 use Jose\Factory\JWKFactory;
 use Jose\Factory\JWSFactory;
 
@@ -12,7 +10,7 @@ final class TokenFactory {
 
   public function __construct() {
     $this->private_key = JWKFactory::createFromKeyFile(
-      getcwd() . '/crypto_files/disposable.private.pem',
+      __DIR__ . '/../../crypto_files/disposable.private.pem',
       'lalala', # we don't really care if anybody steals this!
       [
         'use' => 'sig',
@@ -27,14 +25,14 @@ final class TokenFactory {
       'aud' => 'workbench.ebi.ac.uk',
       'sub' => 'psafont@ebi.ac.uk',
     ];
-    return [JWSFactory::createJWSToCompactJSON(
+    return [ ['Correct token', JWSFactory::createJWSToCompactJSON(
       $claims,
       $this->private_key,
       [
         'crit' => ['exp', 'aud'],
         'alg' => 'RS256',
       ]
-    )];
+    )]];
   }
 }
 ?>
