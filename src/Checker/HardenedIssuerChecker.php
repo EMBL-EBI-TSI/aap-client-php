@@ -30,7 +30,7 @@ class HardenedIssuerChecker implements ClaimCheckerInterface
     Assertion::true($jwt->hasClaim('iss'), sprintf('Lack of issuer claim found.'));
 
     $issuer = $jwt->getClaim('iss');
-    Assertion::true($this->isIssuerAllowed($issuer), sprintf('The issuer "%s" is not allowed.', $issuer));
+    Assertion::true($this->isIssuerAllowed($issuer), sprintf('The issuer "%s" is not trusted.', $issuer));
 
     return ['iss'];
   }
