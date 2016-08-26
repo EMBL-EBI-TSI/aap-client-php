@@ -27,7 +27,7 @@ foreach (ClaimFactory::generateClaims() as $name => $claims)
   try
   {
     if ($print) {
-      TokenPrinter::printToken($token);
+      TokenPrinter::printToken($name, $token);
     }
 
     TokenTester::testToken($token, $signature_index);
@@ -36,6 +36,7 @@ foreach (ClaimFactory::generateClaims() as $name => $claims)
   } catch(Exception $e) {
     echo '"' . $name . '" is' . $esc . '[91m unacceptable' . $esc . '[0m: ' . $e->getMessage() . PHP_EOL;
   }
+  echo PHP_EOL;
 }
 
 ?>

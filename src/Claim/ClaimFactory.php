@@ -22,21 +22,37 @@ class ClaimFactory
     $claims['Expired token']          = $tmp;
 
     $tmp = $canonic;
+    unset($tmp['iat']);
+    $claims['No issue time token']    = $tmp;
+
+    $tmp = $canonic;
     $tmp['iat'] = time() + 3600;
-    $tmp['exp'] = time() - 3599;
+    $tmp['exp'] = time() + 3601;
     $claims['Too early token']        = $tmp;
+
+    $tmp = $canonic;
+    unset($tmp['exp']);
+    $claims['No expiration token']    = $tmp;
 
     $tmp = $canonic;
     $tmp['iss'] = 'tsi.ebi.ac.uk';
     $claims['Untrusted issuer token'] = $tmp;
 
     $tmp = $canonic;
+    unset($tmp['iss']);
+    $claims['No issuer token']        = $tmp;
+
+    $tmp = $canonic;
     $tmp['aud'] = 'portal.ebi.ac.uk';
-    $claims['Untrusted issuer token'] = $tmp;
+    $claims['Unknown audience token'] = $tmp;
+
+    $tmp = $canonic;
+    unset($tmp['aud']);
+    $claims['No aud token']           = $tmp;
 
     $tmp = $canonic;
     unset($tmp['sub']);
-    $claims['Subject missing token']  = $tmp;
+    $claims['No subject token']       = $tmp;
 
     return $claims;
   }
