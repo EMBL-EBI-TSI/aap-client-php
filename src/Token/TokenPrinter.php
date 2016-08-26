@@ -3,7 +3,7 @@
 namespace Token;
 
 class TokenPrinter {
-  public function printToken($name, $token) {
+  public function print($name, $token) {
     $claims = array('iss', 'aud', 'sub', 'exp', 'iat', 'name', 'admin');
 
     echo '"' . $name . '":' . PHP_EOL;

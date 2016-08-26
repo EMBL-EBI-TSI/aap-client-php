@@ -5,14 +5,14 @@ require '../vendor/autoload.php';
 include 'Claim/ClaimFactory.php';
 include 'Token/TokenFactory.php';
 include 'Token/TokenPrinter.php';
-include 'Token/TokenTester.php';
 include 'Token/TokenUnserializer.php';
+include 'Token/TokenValidator.php';
 
 use Claim\ClaimFactory;
 use Token\TokenFactory;
 use Token\TokenPrinter;
-use Token\TokenTester;
 use Token\TokenUnserializer;
+use Token\TokenValidator;
 
 $print  = false;
 $esc    = chr(27);
@@ -27,16 +27,18 @@ foreach (ClaimFactory::generateClaims() as $name => $claims)
   try
   {
     if ($print) {
-      TokenPrinter::printToken($name, $token);
+      TokenPrinter::print($name, $token);
     }
 
-    TokenTester::testToken($token, $signature_index);
+    TokenValidator::validate($token, $signature_index);
 
     echo '"' . $name . '" is' . $esc . '[92m A-OK' . $esc . '[0m' . PHP_EOL;
   } catch(Exception $e) {
     echo '"' . $name . '" is' . $esc . '[91m unacceptable' . $esc . '[0m: ' . $e->getMessage() . PHP_EOL;
   }
-  echo PHP_EOL;
+  if ($print) {
+    echo PHP_EOL;
+  }
 }
 
 ?>

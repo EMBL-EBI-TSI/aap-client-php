@@ -2,13 +2,15 @@
 
 namespace Token;
 
-include __DIR__ . '/../Checker/HardenedIssuerChecker.php';
+include __DIR__ . '/../Checker/PresentSubjectChecker.php';
+include __DIR__ . '/../Checker/PresentIssueTimeChecker.php';
 
 use Jose\Factory\CheckerManagerFactory;
 use Jose\Checker\AudienceChecker;
-use Checker\HardenedIssuerChecker;
+use Checker\PresentSubjectChecker;
+use Checker\PresentIssueTimeChecker;
 
-class TokenTester
+class TokenValidator
 {
   private function getClaimChecks()
   {
@@ -16,7 +18,8 @@ class TokenTester
       'exp',
       'iat',
       new AudienceChecker('workbench.ebi.ac.uk'),
-      new HardenedIssuerChecker(['aap.ebi.ac.uk'])
+      new PresentSubjectChecker(),
+      new PresentIssueTimeChecker()
     ];
   }
 
@@ -25,10 +28,10 @@ class TokenTester
     return [ 'crit' ];
   }
 
-  public function testToken($token, $signature_index) {
+  public function validate($token, $signature_index) {
     $checkmate = CheckerManagerFactory::createClaimCheckerManager(
-      TokenTester::getClaimChecks(),
-      TokenTester::getHeaderChecks()
+      TokenValidator::getClaimChecks(),
+      TokenValidator::getHeaderChecks()
     );
     $checkmate->checkJWS($token, $signature_index);
   }
