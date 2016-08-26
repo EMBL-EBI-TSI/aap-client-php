@@ -21,4 +21,6 @@ To run the tests go to ``src/`` and then
 
 To try more tokens modify ``src/Token/TokenFactory.php``.
 
-More validity checks can be done following the structure in ``src/Checker/HardenedIssuerChecker.php`` and adding them in the function ``getClaimChecks()`` in ``src/Token/TokenTester.php``.
+More validity checks can be done following the structure in ``src/Checker/PresentSubjectChecker.php`` and adding them in the function ``getClaimChecks()`` in ``src/Token/TokenTester.php``.
+
+More test tokens/claims can be added in ``src/Claim/ClaimFactory.php`` to see how the validator will behave.
