@@ -22,23 +22,22 @@ $unserializer = new TokenUnserializer();
 
 foreach (ClaimFactory::generateClaims() as $name => $claims)
 {
-  list($token, $signature_index) = $unserializer->getToken($tokener->createToken($claims));
+	list($token, $signature_index) = $unserializer->getToken($tokener->createToken($claims));
+	try
+	{
+		if ($print) {
+			TokenPrinter::print($name, $token);
+		}
 
-  try
-  {
-    if ($print) {
-      TokenPrinter::print($name, $token);
-    }
+		TokenValidator::validate($token, $signature_index);
 
-    TokenValidator::validate($token, $signature_index);
-
-    echo '"' . $name . '" is' . $esc . '[92m A-OK' . $esc . '[0m' . PHP_EOL;
-  } catch(Exception $e) {
-    echo '"' . $name . '" is' . $esc . '[91m unacceptable' . $esc . '[0m: ' . $e->getMessage() . PHP_EOL;
-  }
-  if ($print) {
-    echo PHP_EOL;
-  }
+		echo '"' . $name . '" is' . $esc . '[92m A-OK' . $esc . '[0m' . PHP_EOL;
+	} catch(Exception $e) {
+		echo '"' . $name . '" is' . $esc . '[91m unacceptable' . $esc . '[0m: ' . $e->getMessage() . PHP_EOL;
+	}
+	if ($print) {
+		echo PHP_EOL;
+	}
 }
 
 ?>

@@ -12,29 +12,29 @@ use Checker\PresentIssueTimeChecker;
 
 class TokenValidator
 {
-  private function getClaimChecks()
-  {
-    return [
-      'exp',
-      'iat',
-      new AudienceChecker('workbench.ebi.ac.uk'),
-      new PresentSubjectChecker(),
-      new PresentIssueTimeChecker()
-    ];
-  }
+	private function getClaimChecks()
+	{
+		return [
+			'exp',
+			'iat',
+			new AudienceChecker('workbench.ebi.ac.uk'),
+			new PresentSubjectChecker(),
+			new PresentIssueTimeChecker()
+		];
+	}
 
-  private function getHeaderChecks()
-  {
-    return [ 'crit' ];
-  }
+	private function getHeaderChecks()
+	{
+		return [ 'crit' ];
+	}
 
-  public function validate($token, $signature_index) {
-    $checkmate = CheckerManagerFactory::createClaimCheckerManager(
-      TokenValidator::getClaimChecks(),
-      TokenValidator::getHeaderChecks()
-    );
-    $checkmate->checkJWS($token, $signature_index);
-  }
+	public function validate($token, $signature_index) {
+		$checkmate = CheckerManagerFactory::createClaimCheckerManager(
+			TokenValidator::getClaimChecks(),
+			TokenValidator::getHeaderChecks()
+		);
+		$checkmate->checkJWS($token, $signature_index);
+	}
 }
 
 ?>
