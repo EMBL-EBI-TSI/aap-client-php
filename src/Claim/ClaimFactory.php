@@ -8,10 +8,10 @@ class ClaimFactory
 		$claims = [];
 
 		$canonic = ['iat' => time(),
-	        'exp' => time() + 3600,
-	        'iss' => 'aap.ebi.ac.uk',
-	        'aud' => 'workbench.ebi.ac.uk',
-	        'sub' => 'psafont@ebi.ac.uk',
+		    'exp' => time() + 3600,
+		    'iss' => 'aap.ebi.ac.uk',
+		    'aud' => 'workbench.ebi.ac.uk',
+		    'sub' => 'test',
 		];
 
 		$claims['Good token']             = $canonic;

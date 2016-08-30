@@ -22,10 +22,12 @@ $unserializer = new TokenUnserializer();
 
 foreach (ClaimFactory::generateClaims() as $name => $claims)
 {
-	list($token, $signature_index) = $unserializer->getToken($tokener->createToken($claims));
+	$encoded_token = $tokener->createToken($claims);
+	list($token, $signature_index) = $unserializer->getToken($encoded_token);
 	try
 	{
 		if ($print) {
+			echo $encoded_token . PHP_EOL;
 			TokenPrinter::print($name, $token);
 		}
 
