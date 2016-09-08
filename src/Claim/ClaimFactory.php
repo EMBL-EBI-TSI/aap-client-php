@@ -5,13 +5,10 @@ namespace Claim;
 class ClaimFactory
 {
 	public function generateClaims() {
-		$validityClaims = ClaimFactory::generateValidityClaims();
-		# Since array_colum doesn't let us keep the key, we have
-		# to use this convoluted way to get it back.
-		return array_filter(array_combine(
-		           array_keys($validityClaims),
-		           array_column($validityClaims, 0)
-		       ));
+		$getFirst = function($item) {
+			return $item[0];
+		};
+		return array_map($getFirst, ClaimFactory::generateValidityClaims());
 	}
 	public function generateValidityClaims() {
 		$claims = [];
