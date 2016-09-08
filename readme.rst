@@ -12,10 +12,16 @@ Go to the project root and then
 
 ``$ composer install``
 
-Testing
-#######
+Usage
+#####
 
-To run the tests use phpunit like so:
+To show how claims afects the validity of a JWT token run:
+
+``$ php src/ShowTokens.php``
+
+If, for some reason you also want to see the contents of the tokens, you can switch the ``$print`` variable to ``true``.
+
+To run the verification tests use phpunit like so:
 
 ``$ phpunit tests/TokenTest``
 
