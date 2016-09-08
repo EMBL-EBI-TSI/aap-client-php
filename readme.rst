@@ -15,9 +15,9 @@ Go to the project root and then
 Testing
 #######
 
-To run the tests go run phpunit like so:
+To run the tests use phpunit like so:
 
-``$ phpunit src/test``
+``$ phpunit tests/TokenTest``
 
 More validity checks can be done following the structure in ``src/Checker/PresentSubjectChecker.php`` and adding them in the function ``getClaimChecks()`` in ``src/Token/TokenTester.php``.
 
