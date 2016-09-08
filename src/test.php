@@ -2,12 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-include 'Claim/ClaimFactory.php';
-include 'Token/TokenFactory.php';
-include 'Token/TokenPrinter.php';
-include 'Token/TokenUnserializer.php';
-include 'Token/TokenValidator.php';
-
 use Workbench\Claim\ClaimFactory;
 use Workbench\Token\TokenFactory;
 use Workbench\Token\TokenPrinter;

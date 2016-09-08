@@ -2,9 +2,6 @@
 
 namespace Workbench\Token;
 
-include __DIR__ . '/../Checker/PresentSubjectChecker.php';
-include __DIR__ . '/../Checker/PresentIssueTimeChecker.php';
-
 use Jose\Factory\CheckerManagerFactory;
 use Jose\Checker\AudienceChecker;
 use Workbench\Checker\PresentSubjectChecker;
