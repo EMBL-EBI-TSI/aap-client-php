@@ -1,6 +1,6 @@
 <?php
 
-namespace Token;
+namespace Workbench\Token;
 
 use Jose\Loader;
 use Jose\Factory\JWKFactory;
@@ -28,5 +28,3 @@ class TokenUnserializer
 	return [$token, $signature_index];
 	}
 }
-
-?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Claim;
+namespace Workbench\Claim;
 
 class ClaimFactory
 {
@@ -63,5 +63,3 @@ class ClaimFactory
 		return $claims;
 	}
 }
-
-?>

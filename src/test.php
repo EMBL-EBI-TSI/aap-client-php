@@ -8,11 +8,12 @@ include 'Token/TokenPrinter.php';
 include 'Token/TokenUnserializer.php';
 include 'Token/TokenValidator.php';
 
-use Claim\ClaimFactory;
-use Token\TokenFactory;
-use Token\TokenPrinter;
-use Token\TokenUnserializer;
-use Token\TokenValidator;
+use Workbench\Claim\ClaimFactory;
+use Workbench\Token\TokenFactory;
+use Workbench\Token\TokenPrinter;
+use Workbench\Token\TokenUnserializer;
+use Workbench\Token\TokenValidator;
+
 use PHPUnit\Framework\TestCase;
 
 class TokenTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Token;
+namespace Workbench\Token;
 
 class TokenPrinter {
 	public function print($name, $token) {
@@ -12,5 +12,3 @@ class TokenPrinter {
 		}
 	}
 }
-
-?>

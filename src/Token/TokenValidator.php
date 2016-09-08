@@ -1,14 +1,14 @@
 <?php
 
-namespace Token;
+namespace Workbench\Token;
 
 include __DIR__ . '/../Checker/PresentSubjectChecker.php';
 include __DIR__ . '/../Checker/PresentIssueTimeChecker.php';
 
 use Jose\Factory\CheckerManagerFactory;
 use Jose\Checker\AudienceChecker;
-use Checker\PresentSubjectChecker;
-use Checker\PresentIssueTimeChecker;
+use Workbench\Checker\PresentSubjectChecker;
+use Workbench\Checker\PresentIssueTimeChecker;
 
 class TokenValidator
 {
@@ -36,5 +36,3 @@ class TokenValidator
 		$checkmate->checkJWS($token, $signature_index);
 	}
 }
-
-?>

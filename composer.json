@@ -7,12 +7,12 @@
     },
     "autoload": {
         "psr-4": {
-            "EBI\\": "src/"
+            "Workbench\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "EBI\\Test\\": "tests/"
+            "Workbench\\Test\\": "tests/"
         }
     }
 }

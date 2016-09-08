@@ -1,8 +1,9 @@
 <?php
 
-namespace Checker;
+namespace Workbench\Checker;
 
 use Assert\Assertion;
+
 use Jose\Object\JWTInterface;
 use Jose\Checker\ClaimCheckerInterface;
 
@@ -18,4 +19,3 @@ class PresentIssueTimeChecker implements ClaimCheckerInterface
 		return ['iat'];
 	}
 }
-

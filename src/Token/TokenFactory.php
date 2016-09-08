@@ -1,6 +1,6 @@
 <?php
 
-namespace Token;
+namespace Workbench\Token;
 
 use Jose\Factory\JWKFactory;
 use Jose\Factory\JWSFactory;
@@ -28,4 +28,3 @@ final class TokenFactory {
 		);
 	}
 }
-?>
