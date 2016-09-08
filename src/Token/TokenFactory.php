@@ -8,9 +8,9 @@ use Jose\Factory\JWSFactory;
 final class TokenFactory {
 	private $private_key;
 
-	public function __construct() {
+	public function __construct($filename) {
 		$this->private_key = JWKFactory::createFromKeyFile(
-			__DIR__ . '/../../crypto_files/disposable.private.pem',
+			$filename,
 			'lalala', # we don't really care if anybody steals this!
 			[
 				'use' => 'sig',

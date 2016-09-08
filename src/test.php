@@ -1,6 +1,6 @@
 <?php
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 include 'Claim/ClaimFactory.php';
 include 'Token/TokenFactory.php';
@@ -13,33 +13,40 @@ use Token\TokenFactory;
 use Token\TokenPrinter;
 use Token\TokenUnserializer;
 use Token\TokenValidator;
+use PHPUnit\Framework\TestCase;
 
-$print  = false;
-$esc    = chr(27);
-
-$tokener      = new TokenFactory();
-$unserializer = new TokenUnserializer();
-
-foreach (ClaimFactory::generateClaims() as $name => $claims)
+class TokenTest extends TestCase
 {
-	$encoded_token = $tokener->createToken($claims);
-	list($token, $signature_index) = $unserializer->getToken($encoded_token);
-	try
+	private static $tokener;
+	private static $unserializer;
+
+	public function setUp()
 	{
-		if ($print) {
-			echo $encoded_token . PHP_EOL;
-			TokenPrinter::print($name, $token);
-		}
-
-		TokenValidator::validate($token, $signature_index);
-
-		echo '"' . $name . '" is' . $esc . '[92m A-OK' . $esc . '[0m' . PHP_EOL;
-	} catch(Exception $e) {
-		echo '"' . $name . '" is' . $esc . '[91m unacceptable' . $esc . '[0m: ' . $e->getMessage() . PHP_EOL;
+		self::$tokener = new TokenFactory(
+			__DIR__ . '/../crypto_files/disposable.private.pem'
+		);
+		self::$unserializer = new TokenUnserializer(
+			__DIR__ . '/../crypto_files/disposable.public.pem'
+		);
 	}
-	if ($print) {
-		echo PHP_EOL;
+
+	public function testClaims()
+	{
+		foreach (ClaimFactory::generateValidityClaims() as $name => list($claims, $expected))
+		{
+			$result = false;
+			list($token, $signature_index) = self::$unserializer->getToken(
+			                                 self::$tokener->createToken($claims));
+
+			try
+			{
+				TokenValidator::validate($token, $signature_index);
+				$result = true;
+			} catch(Exception $e) {
+			} finally
+			{
+				$this->assertEquals($result, $expected);
+			}
+		}
 	}
 }
-
-?>

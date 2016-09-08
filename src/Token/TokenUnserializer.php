@@ -10,9 +10,9 @@ class TokenUnserializer
 	private $key;
 	private $loader;
 
-	public function __construct() {
+	public function __construct($filename) {
 	$this->key = JWKFactory::createFromCertificateFile(
-		__DIR__ . '/../../crypto_files/disposable.public.pem',
+		$filename,
 		['use'=>'sig', 'alg'=>'RS256']
 	);
 	$this->loader = new Loader();
