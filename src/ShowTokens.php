@@ -9,7 +9,8 @@ use Workbench\Token\TokenUnserializer;
 use Workbench\Token\TokenValidator;
 
 $tokener = new TokenFactory(
-	__DIR__ . '/../crypto_files/disposable.private.pem'
+	__DIR__ . '/../crypto_files/disposable.private.pem',
+	'lalala' # keypass for the key, important not to use it in production :)
 );
 $unserializer = new TokenUnserializer(
 	__DIR__ . '/../crypto_files/disposable.public.pem'

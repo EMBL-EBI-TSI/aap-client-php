@@ -8,10 +8,10 @@ use Jose\Factory\JWSFactory;
 final class TokenFactory {
 	private $private_key;
 
-	public function __construct($filename) {
+	public function __construct($filename, $password) {
 		$this->private_key = JWKFactory::createFromKeyFile(
 			$filename,
-			'lalala', # we don't really care if anybody steals this!
+			$password,
 			[
 				'use' => 'sig',
 			]
