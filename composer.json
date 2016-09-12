@@ -1,28 +1,30 @@
 {
-    "name": "ebi/jwt",
-    "description": "Library for assisting in JWT token generation and consumption",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        "name": "Pau Ruiz i Safont",
-        "email": "psafont@ebi.ac.uk",
-        "homepage" : "https://www.ebi.ac.uk/about/people/pau-ruiz-safont",
-        "role": "Developer"
-    ],
-    "require": {
-        "Spomky-Labs/jose": "^5.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.5.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Workbench\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Workbench\\Test\\": "tests/"
-        }
+  "name": "ebi/jwt",
+  "description": "Library for assisting in JWT token generation and consumption",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pau Ruiz i Safont",
+      "email": "psafont@ebi.ac.uk",
+      "homepage" : "https://www.ebi.ac.uk/about/people/pau-ruiz-safont",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "Spomky-Labs/jose": "^5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Workbench\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Workbench\\Test\\": "tests/"
+    }
+  }
 }
