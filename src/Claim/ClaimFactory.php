@@ -4,61 +4,108 @@ namespace Workbench\Claim;
 
 class ClaimFactory
 {
-	public static function generateClaims() {
-		$getFirst = function($item) {
-			return $item[0];
-		};
-		return array_map($getFirst, ClaimFactory::generateValidityClaims());
+	private static function getClaimChanges(){
+		return	[
+			'Good token' => [
+				[], true
+			],
+			'Expired token' => [
+				[
+					'iat' => time() - 3600,
+					'exp' => time() - 1
+				], false
+			],
+			'No issue time token' => [
+				[
+					'iat' => NULL
+				], false
+			],
+			'Too early token' => [
+				[
+					'iat' => time() + 3600,
+					'exp' => time() + 3601
+				], false
+			],
+			'No expiration token' => [
+				[
+					'exp' => NULL
+				], false
+			],
+			'Too early token' => [
+				[
+					'iat' => time() + 3600,
+					'exp' => time() + 3601
+				], false
+			],
+			'Untrusted issuer token' => [
+				[
+					'iss' => 'tsi.ebi.ac.uk'
+				], true
+			],
+			'No issuer token' => [
+				[
+					'iss' => NULL
+				], true
+			],
+			'Unknown audience token' => [
+				[
+					'aud' => 'portal.ebi.ac.uk',
+				], false
+			],
+			'No audience token' => [
+				[
+					'aud' => NULL
+				], false
+			],
+			'No subject token' => [
+				[
+					'sub' => NULL
+				], false
+			]
+		];
 	}
-	public static function generateValidityClaims() {
-		$claims = [];
 
-		$canonic = ['iat' => time(),
+	private static function getFirst($item) {
+		return $item[0];
+	}
+
+	private static function generateSampleClaims() {
+		return ['iat' => time(),
 		    'exp' => time() + 3600,
 		    'iss' => 'aap.ebi.ac.uk',
 		    'aud' => 'workbench.ebi.ac.uk',
-		    'sub' => 'test',
+		    'sub' => 'subject',
 		];
+	}
 
-		$claims['Good token']             = array($canonic, true);
+	public static function changeClaims($claims, $changes) {
+		foreach ($changes as $key => $value) {
+			if (isset($value)) {
+				unset($claims[$key]);
+			}
+			$claims[$key] = $value;
+		}
+		return $claims;
+	}
 
-		$tmp = $canonic;
-		$tmp['iat'] = time() - 3600;
-		$tmp['exp'] = time() - 1;
-		$claims['Expired token']          = array($tmp, false);
+	public static function generateClaims() {
+		return array_map(ClaimFactory::getFirst(),
+		    ClaimFactory::generateValidityClaims());
+	}
 
-		$tmp = $canonic;
-		unset($tmp['iat']);
-		$claims['No issue time token']    = array($tmp, false);
+	public static function generateValidityClaims() {
+		$claims = [];
+		$changes = ClaimFactory::getClaimChanges();
 
-		$tmp = $canonic;
-		$tmp['iat'] = time() + 3600;
-		$tmp['exp'] = time() + 3601;
-		$claims['Too early token']        = array($tmp, false);
-
-		$tmp = $canonic;
-		unset($tmp['exp']);
-		$claims['No expiration token']    = array($tmp, false);
-
-		$tmp = $canonic;
-		$tmp['iss'] = 'tsi.ebi.ac.uk';
-		$claims['Untrusted issuer token'] = array($tmp, true);
-
-		$tmp = $canonic;
-		unset($tmp['iss']);
-		$claims['No issuer token']        = array($tmp, true);
-
-		$tmp = $canonic;
-		$tmp['aud'] = 'portal.ebi.ac.uk';
-		$claims['Unknown audience token'] = array($tmp, false);
-
-		$tmp = $canonic;
-		unset($tmp['aud']);
-		$claims['No aud token']           = array($tmp, false);
-
-		$tmp = $canonic;
-		unset($tmp['sub']);
-		$claims['No subject token']       = array($tmp, false);
+		foreach ($changes as $name => list($changes, $valid)) {
+			$claims[$name] = [
+			    ClaimFactory::changeClaims(
+					ClaimFactory::generateSampleClaims(),
+					$changes
+				),
+			    $valid
+			];
+		}
 
 		return $claims;
 	}
