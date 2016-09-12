@@ -4,6 +4,10 @@ namespace Workbench\Claim;
 
 class ClaimFactory
 {
+	/**
+	 * Returns an array with name of a token, changes to be applied to the
+	 * default token and whether or not it should be correct.
+	 */
 	private static function getClaimChanges(){
 		return	[
 			'Good token' => [
@@ -29,12 +33,6 @@ class ClaimFactory
 			'No expiration token' => [
 				[
 					'exp' => NULL
-				], false
-			],
-			'Too early token' => [
-				[
-					'iat' => time() + 3600,
-					'exp' => time() + 3601
 				], false
 			],
 			'Untrusted issuer token' => [
@@ -71,19 +69,20 @@ class ClaimFactory
 
 	private static function generateSampleClaims() {
 		return ['iat' => time(),
-		    'exp' => time() + 3600,
-		    'iss' => 'aap.ebi.ac.uk',
-		    'aud' => 'workbench.ebi.ac.uk',
-		    'sub' => 'subject',
+		        'exp' => time() + 3600,
+		        'iss' => 'aap.ebi.ac.uk',
+		        'aud' => 'workbench.ebi.ac.uk',
+		        'sub' => 'subject',
 		];
 	}
 
 	public static function changeClaims($claims, $changes) {
 		foreach ($changes as $key => $value) {
-			if (isset($value)) {
+			if (is_null($value)) {
 				unset($claims[$key]);
+			} else {
+				$claims[$key] = $value;
 			}
-			$claims[$key] = $value;
 		}
 		return $claims;
 	}
