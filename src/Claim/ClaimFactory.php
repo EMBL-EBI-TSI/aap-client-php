@@ -67,7 +67,7 @@ class ClaimFactory
 		return $item[0];
 	}
 
-	private static function generateSampleClaims() {
+	public static function generateSampleClaims() {
 		return ['iat' => time(),
 		        'exp' => time() + 3600,
 		        'iss' => 'aap.ebi.ac.uk',
