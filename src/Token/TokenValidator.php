@@ -9,7 +9,7 @@ use Workbench\Checker\PresentIssueTimeChecker;
 
 class TokenValidator
 {
-	private function getClaimChecks()
+	private static function getClaimChecks()
 	{
 		return [
 			'exp',
@@ -20,12 +20,12 @@ class TokenValidator
 		];
 	}
 
-	private function getHeaderChecks()
+	private static function getHeaderChecks()
 	{
 		return [ 'crit' ];
 	}
 
-	public function validate($token, $signature_index) {
+	public static function validate($token, $signature_index) {
 		$checkmate = CheckerManagerFactory::createClaimCheckerManager(
 			TokenValidator::getClaimChecks(),
 			TokenValidator::getHeaderChecks()

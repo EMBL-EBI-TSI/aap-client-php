@@ -4,13 +4,13 @@ namespace Workbench\Claim;
 
 class ClaimFactory
 {
-	public function generateClaims() {
+	public static function generateClaims() {
 		$getFirst = function($item) {
 			return $item[0];
 		};
 		return array_map($getFirst, ClaimFactory::generateValidityClaims());
 	}
-	public function generateValidityClaims() {
+	public static function generateValidityClaims() {
 		$claims = [];
 
 		$canonic = ['iat' => time(),
