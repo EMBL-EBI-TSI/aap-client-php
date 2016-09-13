@@ -17,7 +17,7 @@ Usage
 
 To show how claims afects the validity of a JWT token run:
 
-``$ php src/ShowTokens.php``
+``$ php examples/ShowTokens.php``
 
 If, for some reason you also want to see the contents of the tokens, you can switch the ``$print`` variable to ``true``.
 
