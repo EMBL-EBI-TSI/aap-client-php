@@ -27,5 +27,4 @@ To run the verification tests use phpunit like so:
 
 More validity checks can be done following the structure in ``src/Checker/PresentSubjectChecker.php`` and adding them in the function ``getClaimChecks()`` in ``src/Token/TokenTester.php``.
 
-More test tokens/claims can be added in ``src/Claim/ClaimFactory.php`` along with the expected resul
-.
+More test tokens/claims can be added in ``src/Claim/ClaimFactory.php`` along with the expected result.
