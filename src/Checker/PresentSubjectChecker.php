@@ -2,20 +2,10 @@
 
 namespace Workbench\Checker;
 
-use Assert\Assertion;
-
-use Jose\Object\JWTInterface;
-use Jose\Checker\ClaimCheckerInterface;
-
-class PresentSubjectChecker implements ClaimCheckerInterface
+class PresentSubjectChecker extends PresentClaimChecker
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function checkClaim(JWTInterface $jwt)
+	public function __construct()
 	{
-		Assertion::true($jwt->hasClaim('sub'), sprintf('Lack of subject claim found.'));
-
-		return ['sub'];
+		parent::__construct('sub', 'subject');
 	}
 }

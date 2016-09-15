@@ -2,20 +2,10 @@
 
 namespace Workbench\Checker;
 
-use Assert\Assertion;
-
-use Jose\Object\JWTInterface;
-use Jose\Checker\ClaimCheckerInterface;
-
-class PresentIssueTimeChecker implements ClaimCheckerInterface
+class PresentIssueTimeChecker extends PresentClaimChecker
 {
-	/**
- 	 * {@inheritdoc}
- 	 */
-	public function checkClaim(JWTInterface $jwt)
+	public function __construct()
 	{
-		Assertion::true($jwt->hasClaim('iat'), sprintf('Lack of issued at time claim found.'));
-
-		return ['iat'];
+		parent::__construct('iat', 'issued at time');
 	}
 }

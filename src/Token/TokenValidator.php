@@ -6,6 +6,7 @@ use Jose\Factory\CheckerManagerFactory;
 use Jose\Checker\AudienceChecker;
 use Workbench\Checker\PresentSubjectChecker;
 use Workbench\Checker\PresentIssueTimeChecker;
+use Workbench\Checker\PresentEmailChecker;
 
 class TokenValidator
 {
@@ -16,7 +17,8 @@ class TokenValidator
 			'iat',
 			new AudienceChecker('workbench.ebi.ac.uk'),
 			new PresentSubjectChecker(),
-			new PresentIssueTimeChecker()
+			new PresentIssueTimeChecker(),
+			new PresentEmailChecker()
 		];
 	}
 

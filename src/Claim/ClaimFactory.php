@@ -68,11 +68,12 @@ class ClaimFactory
 	}
 
 	public static function generateSampleClaims() {
-		return ['iat' => time(),
-		        'exp' => time() + 3600,
-		        'iss' => 'aap.ebi.ac.uk',
-		        'aud' => 'workbench.ebi.ac.uk',
-		        'sub' => 'subject',
+		return ['iat'   => time(),
+		        'exp'   => time() + 3600,
+		        'iss'   => 'aap.ebi.ac.uk',
+		        'aud'   => 'workbench.ebi.ac.uk',
+		        'sub'   => 'subject',
+		        'email' => 'subject@ebi.ac.uk',
 		];
 	}
 
