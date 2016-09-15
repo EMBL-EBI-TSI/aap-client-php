@@ -3,8 +3,14 @@
 namespace Workbench\Token;
 
 class TokenPrinter {
-	public static function print($name, $token) {
-		$claims = array('iss', 'aud', 'sub', 'exp', 'iat', 'name', 'admin');
+	public static function print(
+		$name,
+		$token,
+		$customClaims=['iss', 'aud', 'sub', 'exp', 'iat', 'email'])
+	{
+		$tokenClaims = array_keys($token->getClaims());
+		$claims = array_unique(array_merge($customClaims, $tokenClaims));
+
 
 		echo '"' . $name . '":' . PHP_EOL;
 		foreach ($claims as $claim) {

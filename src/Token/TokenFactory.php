@@ -22,7 +22,6 @@ final class TokenFactory {
 			$claims,
 			$this->private_key,
 			[
-				'crit' => ['exp', 'aud'],
 				'alg' => 'RS256',
 			]
 		);

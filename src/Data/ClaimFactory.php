@@ -1,6 +1,6 @@
 <?php
 
-namespace Workbench\Claim;
+namespace Workbench\Data;
 
 class ClaimFactory
 {
@@ -10,7 +10,7 @@ class ClaimFactory
 	 */
 	private static function getClaimChanges(){
 		return	[
-			'Good token' => [
+			'There is absolutely no cause for alarm token' => [
 				[], true
 			],
 			'Expired token' => [
@@ -19,20 +19,20 @@ class ClaimFactory
 					'exp' => time() - 1
 				], false
 			],
-			'No issue time token' => [
+			'No expiration token' => [
 				[
-					'iat' => NULL
+					'exp' => NULL
 				], false
 			],
-			'Too early token' => [
+			'Back to the future token' => [
 				[
 					'iat' => time() + 3600,
 					'exp' => time() + 3601
 				], false
 			],
-			'No expiration token' => [
+			'No issue time token' => [
 				[
-					'exp' => NULL
+					'iat' => NULL
 				], false
 			],
 			'Untrusted issuer token' => [
@@ -53,7 +53,7 @@ class ClaimFactory
 			'No audience token' => [
 				[
 					'aud' => NULL
-				], false
+				], true
 			],
 			'No subject token' => [
 				[
@@ -71,7 +71,7 @@ class ClaimFactory
 		return ['iat'   => time(),
 		        'exp'   => time() + 3600,
 		        'iss'   => 'aap.ebi.ac.uk',
-		        'aud'   => 'workbench.ebi.ac.uk',
+		        'aud'   => 'webapp.ebi.ac.uk',
 		        'sub'   => 'subject',
 		        'email' => 'subject@ebi.ac.uk',
 		];

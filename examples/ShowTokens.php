@@ -2,11 +2,13 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Workbench\Claim\ClaimFactory;
+use Workbench\Data\ClaimFactory;
 use Workbench\Token\TokenFactory;
 use Workbench\Token\TokenPrinter;
 use Workbench\Token\TokenUnserializer;
 use Workbench\Token\TokenValidator;
+
+use Jose\Checker\AudienceChecker;
 
 $tokener = new TokenFactory(
 	__DIR__ . '/../crypto_files/disposable.private.pem',
@@ -15,6 +17,7 @@ $tokener = new TokenFactory(
 $unserializer = new TokenUnserializer(
 	__DIR__ . '/../crypto_files/disposable.public.pem'
 );
+$validator = new TokenValidator([new AudienceChecker('webapp.ebi.ac.uk')]);
 
 $esc   = chr(27);
 $print = false;
@@ -30,11 +33,11 @@ foreach (ClaimFactory::generateValidityClaims() as
 		TokenPrinter::print($name, $token);
 	}
 
-	echo '"' . $name . '" is' . $esc;
+	echo '"' . str_pad($name . '" ', 46) . 'is' . $esc;
 
 	try
 	{
-		TokenValidator::validate($token, $signature_index);
+		$validator->validate($token, $signature_index);
 		echo '[92m A-OK' . $esc . '[0m';
 	} catch (Exception $e) {
 		echo '[91m unacceptable' . $esc . '[0m: ' . $e->getMessage();
