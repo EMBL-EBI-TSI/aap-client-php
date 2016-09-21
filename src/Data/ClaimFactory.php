@@ -59,6 +59,11 @@ class ClaimFactory
 				[
 					'sub' => NULL
 				], false
+			],
+			'No email token' => [
+				[
+					'email' => NULL
+				], false
 			]
 		];
 	}
