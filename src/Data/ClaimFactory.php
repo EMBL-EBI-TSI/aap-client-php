@@ -64,6 +64,16 @@ class ClaimFactory
 				[
 					'email' => NULL
 				], false
+			],
+			'No name token' => [
+				[
+					'name' => NULL
+				], false
+			],
+			'No nickname token' => [
+				[
+					'nickname' => NULL
+				], false
 			]
 		];
 	}
@@ -73,12 +83,14 @@ class ClaimFactory
 	}
 
 	public static function generateSampleClaims() {
-		return ['iat'   => time(),
-		        'exp'   => time() + 3600,
-		        'iss'   => 'aap.ebi.ac.uk',
-		        'aud'   => 'webapp.ebi.ac.uk',
-		        'sub'   => 'subject',
-		        'email' => 'subject@ebi.ac.uk',
+		return ['iat'      => time(),
+		        'exp'      => time() + 3600,
+		        'iss'      => 'aap.ebi.ac.uk',
+		        'aud'      => 'webapp.ebi.ac.uk',
+		        'sub'      => 'usr-a1d0c6e83f027327d8461063f4ac58a6',
+		        'email'    => 'subject@ebi.ac.uk',
+		        'name'     => 'John Doe',
+		        'nickname' => '73475cb40a568e8da8a045ced110137e159f890ac4da883b6b17dc651b3a8049',
 		];
 	}
 
