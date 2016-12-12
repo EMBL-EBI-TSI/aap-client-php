@@ -22,7 +22,7 @@ class TokenValidator
 		return [
 		    'iat',
 		    'exp',
-		    new PresentClaimsChecker(['sub', 'exp', 'iat']),
+		    new PresentClaimsChecker(['sub', 'exp', 'iat', 'email', 'name', 'nickname']),
 		];
 	}
 
