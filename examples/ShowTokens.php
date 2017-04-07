@@ -5,7 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use Workbench\Data\ClaimFactory;
 use Workbench\Token\TokenFactory;
 use Workbench\Token\TokenPrinter;
-use Workbench\Token\TokenUnserializer;
+use Workbench\Token\TokenDeserializer;
 use Workbench\Token\TokenValidator;
 
 use Jose\Checker\AudienceChecker;
@@ -14,7 +14,7 @@ $tokener = new TokenFactory(
 	__DIR__ . '/../crypto_files/disposable.private.pem',
 	'lalala' # keypass for the key, important not to use it in production :)
 );
-$unserializer = new TokenUnserializer(
+$unserializer = new TokenDeserializer(
 	__DIR__ . '/../crypto_files/disposable.public.pem'
 );
 $validator = new TokenValidator([new AudienceChecker('webapp.ebi.ac.uk')]);

@@ -3,10 +3,10 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Workbench\Token\TokenPrinter;
-use Workbench\Token\TokenUnserializer;
+use Workbench\Token\TokenDeserializer;
 use Workbench\Token\TokenValidator;
 
-$unserializer = new TokenUnserializer(
+$deserializer = new TokenDeserializer(
 	__DIR__ . '/../../dev.sso.aap.pem'
 );
 $validator = new TokenValidator([]);
@@ -17,7 +17,7 @@ $print = true;
 try
 {
 	list($token, $signature_index) =
-		$unserializer->getToken($argv[1]);
+		$deserializer->getToken($argv[1]);
 
 	if ($print)
 	{

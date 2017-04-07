@@ -5,7 +5,7 @@ namespace Workbench\Token;
 use Jose\Loader;
 use Jose\Factory\JWKFactory;
 
-class TokenUnserializer
+class TokenDeserializer
 {
 	private $key;
 	private $loader;
@@ -19,9 +19,9 @@ class TokenUnserializer
 	}
 
 	/**
-	 * Unserializes a token, if it really was a token
+	 * Deserializes a token, if it really was a token
 	 * @return [JWT, int] JWT token and the signature that was verified with.
-	 * @throws InvalidArgumentException if argument is not an unserializable token.
+	 * @throws InvalidArgumentException if argument is not an deserializable token.
 	 */
 	public function getToken($serialized_token) {
 		$token = $this->loader->loadAndVerifySignatureUsingKey(
