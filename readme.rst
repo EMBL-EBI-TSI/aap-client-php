@@ -31,13 +31,7 @@ More test tokens/claims can be added in ``src/Claim/ClaimFactory.php`` along wit
 
 Including the library
 ^^^^^^^^^^^^^^^^^^^^^
-Because this is a private repository, composer will fail when trying to retrieve the library as a dependency.
-
-If you're a developer you can add your public key to your github account.
-As long as you have access to the repo and ssh is set up to correctly use identities you're good to go.
-
-If, however, you want to deploy it to a server (with Jenkins, for example), you'll have to ask the owner of this repo to add a deploy key to it.
-Then you'll have to add the public key to your ``composer.json``, similar to this:
+In order to use this library add this git repository to ``composer.json``, like so:
 
 .. code:: json
 
@@ -45,12 +39,7 @@ Then you'll have to add the public key to your ``composer.json``, similar to thi
    "repositories": [
      {
        "type": "vcs",
-       "url" : "git@github.com:EMBL-EBI-TSI/workbench-jwt-test.git",
-       "no-api": true,
-       "options": {
-         "username": "user",
-         "pubkey_file" : "/home/user/.ssh/ids/ebijwt/id_rsa.pub",
-       }
+       "url" : "git@github.com:EMBL-EBI-TSI/workbench-jwt-test.git"
      }
    ],
    "require": {
