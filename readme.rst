@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/EMBL-EBI-TSI/aap-client-php.svg?branch=master
+    :target: https://travis-ci.org/EMBL-EBI-TSI/aap-client-php
+
 Overview
 ########
 
