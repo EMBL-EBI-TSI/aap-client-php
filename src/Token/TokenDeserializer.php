@@ -1,6 +1,6 @@
 <?php
 
-namespace Workbench\Token;
+namespace AAP\Token;
 
 use Jose\Loader;
 use Jose\Factory\JWKFactory;

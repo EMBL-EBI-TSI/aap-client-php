@@ -2,10 +2,10 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Workbench\Data\ClaimFactory;
-use Workbench\Token\TokenFactory;
-use Workbench\Token\TokenDeserializer;
-use Workbench\Token\TokenValidator;
+use AAP\Data\ClaimFactory;
+use AAP\Token\TokenFactory;
+use AAP\Token\TokenDeserializer;
+use AAP\Token\TokenValidator;
 
 use Jose\Checker\AudienceChecker;
 
@@ -39,12 +39,14 @@ class TokenTest extends TestCase
 
 	public function tokenProvider()
 	{
+		$cryptofolder = __DIR__ . '/../crypto_files/';
+
 		$tokener = new TokenFactory(
-			__DIR__ . '/../crypto_files/disposable.private.pem',
+			$cryptofolder . 'disposable.private.pem',
 			'lalala'
 		);
 		$deserializer = new TokenDeserializer(
-			__DIR__ . '/../crypto_files/disposable.public.pem'
+			$cryptofolder . 'disposable.public.pem'
 		);
 
 		$tokens = [];

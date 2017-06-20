@@ -2,17 +2,19 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Workbench\Data\ClaimFactory;
-use Workbench\Token\TokenFactory;
-use Workbench\Token\TokenPrinter;
-use Workbench\Token\TokenDeserializer;
+use AAP\Data\ClaimFactory;
+use AAP\Token\TokenFactory;
+use AAP\Token\TokenPrinter;
+use AAP\Token\TokenDeserializer;
+
+$cryptofolder = __DIR__ . '/../crypto_files/';
 
 $tokener = new TokenFactory(
-	__DIR__ . '/../crypto_files/disposable.private.pem',
-	'lalala' # keypass for the key, important not to use it in production :)
+	$cryptofolder . 'disposable.private.pem',
+	'lalala' # keypass for the private pem, do not to it in production :)
 );
 $deserializer = new TokenDeserializer(
-	__DIR__ . '/../crypto_files/disposable.public.pem'
+	$cryptofolder . 'disposable.public.pem'
 );
 
 $claims = ClaimFactory::changeClaims(
@@ -27,5 +29,5 @@ $token = $tokener->createToken($claims);
 list($jwt, $signature_index) =
 	$deserializer->getToken($token);
 
-TokenPrinter::print('Token generated for ' . $argv[1], $jwt);
-echo $token . PHP_EOL;
+echo TokenPrinter::getPrettyPrinted('Token generated for ' . $argv[1], $jwt);
+echo PHP_EOL . $token . PHP_EOL;

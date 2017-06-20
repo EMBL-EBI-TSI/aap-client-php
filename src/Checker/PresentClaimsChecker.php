@@ -1,6 +1,6 @@
 <?php
 
-namespace Workbench\Checker;
+namespace AAP\Checker;
 
 use Assert\Assertion;
 

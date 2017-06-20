@@ -1,21 +1,28 @@
 <?php
-
+/**
+ * This example shows how to deserialize and validate tokens
+ *
+ * It also generates the tokens in order to be able to check them as if they
+ * were produced by the AAP.
+ */
 require __DIR__ . '/../vendor/autoload.php';
 
-use Workbench\Data\ClaimFactory;
-use Workbench\Token\TokenFactory;
-use Workbench\Token\TokenPrinter;
-use Workbench\Token\TokenDeserializer;
-use Workbench\Token\TokenValidator;
+use AAP\Data\ClaimFactory;
+use AAP\Token\TokenFactory;
+use AAP\Token\TokenPrinter;
+use AAP\Token\TokenDeserializer;
+use AAP\Token\TokenValidator;
 
 use Jose\Checker\AudienceChecker;
 
+$cryptofolder = __DIR__ . '/../crypto_files/';
+
 $tokener = new TokenFactory(
-	__DIR__ . '/../crypto_files/disposable.private.pem',
-	'lalala' # keypass for the key, important not to use it in production :)
+	$cryptofolder . 'disposable.private.pem',
+	'lalala' # keypass for the private pem, do not to it in production :)
 );
-$unserializer = new TokenDeserializer(
-	__DIR__ . '/../crypto_files/disposable.public.pem'
+$deserializer = new TokenDeserializer(
+	$cryptofolder . 'disposable.public.pem'
 );
 $validator = new TokenValidator([new AudienceChecker('webapp.ebi.ac.uk')]);
 
@@ -26,11 +33,11 @@ foreach (ClaimFactory::generateValidityClaims() as
 	$name => list($claims, $expected))
 {
 	list($token, $signature_index) =
-		$unserializer->getToken($tokener->createToken($claims));
+		$deserializer->getToken($tokener->createToken($claims));
 
 	if ($print)
 	{
-		TokenPrinter::print($name, $token);
+		echo TokenPrinter::getPrettyPrinted($name, $token);
 	}
 
 	echo '"' . str_pad($name . '" ', 46) . 'is' . $esc;

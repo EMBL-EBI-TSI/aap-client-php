@@ -1,9 +1,9 @@
 <?php
 
-namespace Workbench\Token;
+namespace AAP\Token;
 
 use Jose\Factory\CheckerManagerFactory;
-use Workbench\Checker\PresentClaimsChecker;
+use AAP\Checker\PresentClaimsChecker;
 
 class TokenValidator
 {

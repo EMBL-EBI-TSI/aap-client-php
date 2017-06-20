@@ -2,7 +2,7 @@
   "name": "ebi/jwt",
   "description": "Library for assisting in JWT token generation and consumption",
   "type": "library",
-  "license": "MIT",
+  "license": "BSD-2-Clause",
   "authors": [
     {
       "name": "Pau Ruiz i Safont",
@@ -19,12 +19,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Workbench\\": "src/"
+      "AAP\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Workbench\\Test\\": "tests/"
+      "AAP\\Test\\": "tests/"
     }
   }
 }

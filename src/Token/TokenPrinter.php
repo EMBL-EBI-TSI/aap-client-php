@@ -1,9 +1,9 @@
 <?php
 
-namespace Workbench\Token;
+namespace AAP\Token;
 
 class TokenPrinter {
-	public static function print(
+	public static function getPrettyPrinted(
 		$name,
 		$token,
 		$customClaims=['iss', 'aud', 'sub', 'exp', 'iat', 'email'])
@@ -12,9 +12,10 @@ class TokenPrinter {
 		$claims = array_unique(array_merge($customClaims, $tokenClaims));
 
 
-		echo '"' . $name . '":' . PHP_EOL;
+		$prettyprint = '"' . $name . '":' . PHP_EOL;
 		foreach ($claims as $claim) {
-			echo chr(9) . $claim . ': ' . ($token->hasClaim($claim) ? $token->getClaim($claim) : 'NIL') .  PHP_EOL;
+			$prettyprint .= chr(9) . $claim . ': ' . ($token->hasClaim($claim) ? $token->getClaim($claim) : 'NIL') .  PHP_EOL;
 		}
+		return $prettyprint;
 	}
 }

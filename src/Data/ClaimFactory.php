@@ -1,6 +1,6 @@
 <?php
 
-namespace Workbench\Data;
+namespace AAP\Data;
 
 class ClaimFactory
 {

@@ -1,10 +1,13 @@
 <?php
-
+/*
+ * This example is used to manually check tokens produced by the dev instance
+ * of the AAP.
+ */
 require __DIR__ . '/../vendor/autoload.php';
 
-use Workbench\Token\TokenPrinter;
-use Workbench\Token\TokenDeserializer;
-use Workbench\Token\TokenValidator;
+use AAP\Token\TokenPrinter;
+use AAP\Token\TokenDeserializer;
+use AAP\Token\TokenValidator;
 
 $deserializer = new TokenDeserializer(
 	__DIR__ . '/../../dev.sso.aap.pem'
