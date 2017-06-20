@@ -39,7 +39,7 @@ In order to use this library add this git repository to ``composer.json``, like 
    "repositories": [
      {
        "type": "vcs",
-       "url" : "git@github.com:EMBL-EBI-TSI/workbench-jwt-test.git"
+       "url" : "git@github.com:EMBL-EBI-TSI/aap-client-php.git"
      }
    ],
    "require": {
