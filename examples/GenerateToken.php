@@ -20,8 +20,7 @@ $deserializer = new TokenDeserializer(
 $claims = ClaimFactory::changeClaims(
 			ClaimFactory::generateSampleClaims(),
 			[
-				'email' => $argv[1],
-				'aud' => 'workbench.ebi.ac.uk'
+				'email' => $argv[1]
 			]
 		);
 

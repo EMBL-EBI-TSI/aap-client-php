@@ -50,9 +50,9 @@ class ClaimFactory
 					'aud' => 'portal.ebi.ac.uk',
 				], false
 			],
-			'No audience token' => [
+			'Known audience token' => [
 				[
-					'aud' => NULL
+					'aud' => 'webapp.ebi.ac.uk'
 				], true
 			],
 			'No subject token' => [
@@ -86,7 +86,6 @@ class ClaimFactory
 		return ['iat'      => time(),
 		        'exp'      => time() + 3600,
 		        'iss'      => 'aap.ebi.ac.uk',
-		        'aud'      => 'webapp.ebi.ac.uk',
 		        'sub'      => 'usr-a1d0c6e83f027327d8461063f4ac58a6',
 		        'email'    => 'subject@ebi.ac.uk',
 		        'name'     => 'John Doe',
