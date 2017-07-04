@@ -7,7 +7,7 @@
  */
 require __DIR__ . '/../vendor/autoload.php';
 
-use AAP\Data\ClaimFactory;
+use AAP\Data\PayloadFactory;
 use AAP\Token\TokenFactory;
 use AAP\Token\TokenPrinter;
 use AAP\Token\TokenDeserializer;
@@ -29,7 +29,7 @@ $validator = new TokenValidator([new AudienceChecker('webapp.ebi.ac.uk')]);
 $esc   = chr(27);
 $print = false;
 
-foreach (ClaimFactory::generateValidityClaims() as
+foreach (PayloadFactory::generatePayloadValidities() as
 	$name => list($claims, $expected))
 {
 	list($token, $signature_index) =

@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use AAP\Data\ClaimFactory;
+use AAP\Data\PayloadFactory;
 use AAP\Token\TokenFactory;
 use AAP\Token\TokenDeserializer;
 use AAP\Token\TokenValidator;
@@ -23,18 +23,16 @@ class TokenTest extends TestCase
 	/**
 	 * @dataProvider tokenProvider
 	 */
-	public function testClaims($token, $signature_index, $expected)
+	public function testPayloads($token, $signature_index, $valid)
 	{
-		$result = false;
-		try
+		if (!$valid)
 		{
-			self::$validator->validate($token, $signature_index);
-			$result = true;
-		} catch(Exception $e) {
-		} finally
-		{
-			$this->assertEquals($result, $expected);
+			$this->expectException(Assert\InvalidArgumentException::class);
 		}
+
+		self::$validator->validate($token, $signature_index);
+
+		$this->assertTrue(True, 'https://github.com/sebastianbergmann/phpunit-documentation/issues/171');
 	}
 
 	public function tokenProvider()
@@ -50,11 +48,11 @@ class TokenTest extends TestCase
 		);
 
 		$tokens = [];
-		foreach (ClaimFactory::generateValidityClaims() as $name => list($claims, $expected))
+		foreach (PayloadFactory::generatePayloadValidities() as $name => list($payload, $valid))
 		{
 			list($token, $signature_index) = $deserializer->getToken(
-			    $tokener->createToken($claims));
-			$tokens[$name] = [$token, $signature_index, $expected];
+			    $tokener->createToken($payload));
+			$tokens[$name] = [$token, $signature_index, $valid];
 		}
 		return $tokens;
 	}

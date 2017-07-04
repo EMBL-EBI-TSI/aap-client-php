@@ -2,13 +2,13 @@
 
 namespace AAP\Data;
 
-class ClaimFactory
+class PayloadFactory
 {
 	/**
 	 * Returns an array with name of a token, changes to be applied to the
 	 * default token and whether or not it should be correct.
 	 */
-	private static function getClaimChanges(){
+	private static function getPayloadChanges(){
 		return	[
 			'There is absolutely no cause for alarm token' => [
 				[], true
@@ -82,7 +82,7 @@ class ClaimFactory
 		return $item[0];
 	}
 
-	public static function generateSampleClaims() {
+	public static function generateSamplePayload() {
 		return ['iat'      => time(),
 		        'exp'      => time() + 3600,
 		        'iss'      => 'aap.ebi.ac.uk',
@@ -93,36 +93,36 @@ class ClaimFactory
 		];
 	}
 
-	public static function changeClaims($claims, $changes) {
+	public static function changePayload($payload, $changes) {
 		foreach ($changes as $key => $value) {
 			if (is_null($value)) {
-				unset($claims[$key]);
+				unset($payload[$key]);
 			} else {
-				$claims[$key] = $value;
+				$payload[$key] = $value;
 			}
 		}
-		return $claims;
+		return $payload;
 	}
 
-	public static function generateClaims() {
-		return array_map(ClaimFactory::getFirst(),
-		    ClaimFactory::generateValidityClaims());
+	public static function generatePayloads() {
+		return array_map(PayloadFactory::getFirst(),
+		    PayloadFactory::generatePayloadValidities());
 	}
 
-	public static function generateValidityClaims() {
-		$claims = [];
-		$changes = ClaimFactory::getClaimChanges();
+	public static function generatePayloadValidities() {
+		$payloads = [];
+		$changes = PayloadFactory::getPayloadChanges();
 
 		foreach ($changes as $name => list($changes, $valid)) {
-			$claims[$name] = [
-			    ClaimFactory::changeClaims(
-					ClaimFactory::generateSampleClaims(),
+			$payloads[$name] = [
+			    PayloadFactory::changePayload(
+					PayloadFactory::generateSamplePayload(),
 					$changes
 				),
 			    $valid
 			];
 		}
 
-		return $claims;
+		return $payloads;
 	}
 }
