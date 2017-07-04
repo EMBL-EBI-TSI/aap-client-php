@@ -23,7 +23,7 @@ class DateClaimsChecker implements ClaimCheckerInterface
 	/**
 	 * @param leeway in seconds
 	 */
-	public function __construct(int $leeway=0)
+	public function __construct($leeway=0)
 	{
 		$this->leeway = $leeway;
 	}
