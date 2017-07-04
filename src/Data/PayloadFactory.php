@@ -40,6 +40,11 @@ class PayloadFactory
 					'iat' => NULL
 				], false
 			],
+			'Invalid issue time token' => [
+				[
+					'iat' => (time()) . 'a'
+				], false
+			],
 			'Not redy yet token' => [
 				[
 					'nbf' => time() + 3600
@@ -48,11 +53,6 @@ class PayloadFactory
 			'Invalid nbf token' => [
 				[
 					'nbf' => (time() - 1) . 'a'
-				], false
-			],
-			'Invalid issue time token' => [
-				[
-					'iat' => (time()) . 'a'
 				], false
 			],
 			'Untrusted issuer token' => [
