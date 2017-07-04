@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e41ba6f1c127616347abaf880eb7633b",
+    "content-hash": "d1cc1242bb0834647e3684163c1407cd",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -132,22 +132,22 @@
         },
         {
             "name": "mdanter/ecc",
-            "version": "v0.4.0",
+            "version": "v0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpecc/phpecc.git",
-                "reference": "d8e34259357260ff74a07fd7550cb43cf0fd8aa9"
+                "reference": "fdd1fa9be8184c9f319433437cb1d9f9d4294164"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpecc/phpecc/zipball/d8e34259357260ff74a07fd7550cb43cf0fd8aa9",
-                "reference": "d8e34259357260ff74a07fd7550cb43cf0fd8aa9",
+                "url": "https://api.github.com/repos/phpecc/phpecc/zipball/fdd1fa9be8184c9f319433437cb1d9f9d4294164",
+                "reference": "fdd1fa9be8184c9f319433437cb1d9f9d4294164",
                 "shasum": ""
             },
             "require": {
                 "ext-gmp": "*",
                 "fgrosse/phpasn1": "~1.5",
-                "paragonie/random_compat": "1.4.1|2.0.2",
+                "paragonie/random_compat": "^1|^2",
                 "php": ">=5.6.0"
             },
             "require-dev": {
@@ -194,20 +194,20 @@
                 "phpecc",
                 "secp256k1"
             ],
-            "time": "2016-06-26T18:37:24+00:00"
+            "time": "2017-01-04T12:13:24+00:00"
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.2",
+            "version": "v2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf"
+                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/088c04e2f261c33bed6ca5245491cfca69195ccf",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
+                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
                 "shasum": ""
             },
             "require": {
@@ -242,7 +242,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-04-03T06:00:07+00:00"
+            "time": "2017-03-13T16:27:32+00:00"
         },
         {
             "name": "psr/cache",
@@ -404,28 +404,28 @@
         },
         {
             "name": "spomky-labs/jose",
-            "version": "v5.2.0",
+            "version": "v6.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/jose.git",
-                "reference": "4d719b75c1bfc494a0cbde79a813acd803eb9577"
+                "reference": "fccd7e024b10ad05e9374d745893b13311c4d49a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/jose/zipball/4d719b75c1bfc494a0cbde79a813acd803eb9577",
-                "reference": "4d719b75c1bfc494a0cbde79a813acd803eb9577",
+                "url": "https://api.github.com/repos/Spomky-Labs/jose/zipball/fccd7e024b10ad05e9374d745893b13311c4d49a",
+                "reference": "fccd7e024b10ad05e9374d745893b13311c4d49a",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "^2.4",
                 "fgrosse/phpasn1": "^1.5",
                 "lib-openssl": "*",
-                "mdanter/ecc": "0.4",
+                "mdanter/ecc": "0.4.*",
                 "php": "^5.6|^7.0",
                 "psr/cache": "^1.0",
                 "spomky-labs/aes-key-wrap": "^3.0",
                 "spomky-labs/base64url": "^1.0",
-                "spomky-labs/php-aes-gcm": "^1.0",
+                "spomky-labs/php-aes-gcm": "^1.2",
                 "symfony/polyfill-mbstring": "^1.1",
                 "symfony/polyfill-php70": "^1.1"
             },
@@ -442,7 +442,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.2.x-dev"
+                    "dev-master": "6.1.x-dev"
                 }
             },
             "autoload": {
@@ -482,7 +482,7 @@
                 "jwa",
                 "jwt"
             ],
-            "time": "2016-09-22T11:00:08+00:00"
+            "time": "2017-02-06T18:22:51+00:00"
         },
         {
             "name": "spomky-labs/php-aes-gcm",
