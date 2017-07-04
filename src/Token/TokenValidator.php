@@ -4,6 +4,7 @@ namespace AAP\Token;
 
 use Jose\Factory\CheckerManagerFactory;
 use AAP\Checker\PresentClaimsChecker;
+use AAP\Checker\DateClaimsChecker;
 
 class TokenValidator
 {
@@ -20,8 +21,7 @@ class TokenValidator
 	private static function getMinimalClaimChecks()
 	{
 		return [
-		    'iat',
-		    'exp',
+		    new DateClaimsChecker(),
 		    new PresentClaimsChecker(['sub', 'exp', 'iat', 'email', 'name', 'nickname']),
 		];
 	}
