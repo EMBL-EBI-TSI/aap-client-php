@@ -24,15 +24,35 @@ class PayloadFactory
 					'exp' => NULL
 				], false
 			],
+			'Invalid expiration token' => [
+				[
+					'exp' => (time() + 3600) . 'a'
+				], false
+			],
 			'Back to the future token' => [
 				[
 					'iat' => time() + 3600,
 					'exp' => time() + 3601
-				], false
+				], true
 			],
 			'No issue time token' => [
 				[
 					'iat' => NULL
+				], false
+			],
+			'Not redy yet token' => [
+				[
+					'nbf' => time() + 3600
+				], false
+			],
+			'Invalid nbf token' => [
+				[
+					'nbf' => (time() - 1) . 'a'
+				], false
+			],
+			'Invalid issue time token' => [
+				[
+					'iat' => (time()) . 'a'
 				], false
 			],
 			'Untrusted issuer token' => [
