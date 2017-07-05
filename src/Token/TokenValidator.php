@@ -8,34 +8,36 @@ use AAP\Checker\DateClaimsChecker;
 
 class TokenValidator
 {
-	private $claimChecks;
+    private $checkMate;
 
-	public function __construct(array $claimChecks)
-	{
+    public function __construct(array $claimChecks)
+    {
+        $claimChecks = array_merge(
+               self::getMinimalClaimChecks(),
+               $claimChecks
+        );
 
-		$this->claimChecks = array_merge(
-		       self::getMinimalClaimChecks(),
-		       $claimChecks);
-	}
+        $this->checkMate = CheckerManagerFactory::createClaimCheckerManager(
+            $claimChecks,
+            self::getHeaderChecks()
+        );
+    }
 
-	private static function getMinimalClaimChecks()
-	{
-		return [
-		    new DateClaimsChecker(),
-		    new PresentClaimsChecker(['sub', 'exp', 'iat', 'email', 'name', 'nickname']),
-		];
-	}
+    private static function getMinimalClaimChecks()
+    {
+        return [
+            new DateClaimsChecker(),
+            new PresentClaimsChecker(['sub', 'exp', 'iat', 'email', 'name', 'nickname']),
+        ];
+    }
 
-	private static function getHeaderChecks()
-	{
-		return [ 'crit' ];
-	}
+    private static function getHeaderChecks()
+    {
+        return [ 'crit' ];
+    }
 
-	public function validate($token, $signature_index) {
-		$checkmate = CheckerManagerFactory::createClaimCheckerManager(
-		    $this->claimChecks,
-		    self::getHeaderChecks()
-		);
-		$checkmate->checkJWS($token, $signature_index);
-	}
+    public function validate($token, $signatureIndex)
+    {
+        $this->checkMate->checkJWS($token, $signatureIndex);
+    }
 }

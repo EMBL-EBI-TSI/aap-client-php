@@ -18,44 +18,40 @@ use Jose\Checker\ClaimCheckerInterface;
 
 class DateClaimsChecker implements ClaimCheckerInterface
 {
-	private $leeway;
+    private $leeway;
 
-	/**
-	 * @param leeway in seconds
-	 */
-	public function __construct($leeway=0)
-	{
-		$this->leeway = $leeway;
-	}
+    /**
+     * @param leeway in seconds
+     */
+    public function __construct($leeway=0)
+    {
+        $this->leeway = $leeway;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function checkClaim(JWTInterface $jwt)
-	{
-		$claims = [];
-		foreach (['exp', 'iat', 'nbf'] as $name)
-		{
-			if ($jwt->hasClaim($name)) {
-				$claims[] = $name;
+    /**
+     * {@inheritdoc}
+     */
+    public function checkClaim(JWTInterface $jwt)
+    {
+        $claims = [];
+        foreach (['exp', 'iat', 'nbf'] as $name) {
+            if ($jwt->hasClaim($name)) {
+                $claims[] = $name;
 
-				$claim = $jwt->getClaim($name);
-				Assertion::true(is_numeric($claim) ? intval($claim) == $claim : false,
-								"'" . $name . "' claim must be a number");
+                $claim = $jwt->getClaim($name);
+                Assertion::true(is_numeric($claim) ? intval($claim) == $claim : false,
+                                "'" . $name . "' claim must be a number");
 
-				$claim = intval($claim);
-				if ($name === 'exp')
-				{
-					Assertion::greaterThan($claim, time() + $this->leeway,
-										   'The JWT has expired.');
-				} elseif ($name === 'nbf')
-				{
-					Assertion::lessOrEqualThan($claim, time() - $this->leeway,
-											   'The JWT cannot be used yet.');
-				}
-			}
-		}
-		return $claims;
-	}
+                $claim = intval($claim);
+                if ($name === 'exp') {
+                    Assertion::greaterThan($claim, time() + $this->leeway,
+                                           'The JWT has expired.');
+                } elseif ($name === 'nbf') {
+                    Assertion::lessOrEqualThan($claim, time() - $this->leeway,
+                                               'The JWT cannot be used yet.');
+                }
+            }
+        }
+        return $claims;
+    }
 }
-
