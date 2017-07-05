@@ -111,7 +111,7 @@ class PayloadFactory
         ];
     }
 
-    public function changePayload($payload, $changes)
+    public static function changePayload($payload, $changes)
     {
         foreach ($changes as $key => $value) {
             if (is_null($value)) {
