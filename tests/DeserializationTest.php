@@ -5,9 +5,6 @@ require __DIR__ . '/../vendor/autoload.php';
 use AAP\Data\PayloadFactory;
 use AAP\Token\TokenFactory;
 use AAP\Token\TokenDeserializer;
-use AAP\Token\TokenValidator;
-
-use Jose\Checker\AudienceChecker;
 
 use PHPUnit\Framework\TestCase;
 
