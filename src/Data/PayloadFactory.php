@@ -11,87 +11,87 @@ class PayloadFactory
     private static function getPayloadChanges()
     {
         return    [
-            'There is absolutely no cause for alarm token' => [
+            'There is absolutely no cause for alarm' => [
                 [], true
             ],
-            'Expired token' => [
+            'Expired' => [
                 [
                     'iat' => time() - 3600,
                     'exp' => time() - 1
                 ], false
             ],
-            'No expiration token' => [
+            'No expiration' => [
                 [
                     'exp' => null
                 ], false
             ],
-            'Invalid expiration token' => [
+            'Invalid expiration' => [
                 [
                     'exp' => (time() + 3600) . 'a'
                 ], false
             ],
-            'Back to the future token' => [
+            'Back to the future' => [
                 [
                     'iat' => time() + 3600,
                     'exp' => time() + 3601
                 ], true
             ],
-            'No issue time token' => [
+            'No issue time' => [
                 [
                     'iat' => null
                 ], false
             ],
-            'Invalid issue time token' => [
+            'Invalid issue time' => [
                 [
                     'iat' => (time()) . 'a'
                 ], false
             ],
-            'Not ready yet token' => [
+            'Not ready yet' => [
                 [
                     'nbf' => time() + 3600
                 ], false
             ],
-            'Invalid nbf token' => [
+            'Invalid nbf' => [
                 [
                     'nbf' => (time() - 1) . 'a'
                 ], false
             ],
-            'Untrusted issuer token' => [
+            'Untrusted issuer' => [
                 [
                     'iss' => 'tsi.ebi.ac.uk'
                 ], true
             ],
-            'No issuer token' => [
+            'No issuer' => [
                 [
                     'iss' => null
                 ], true
             ],
-            'Unknown audience token' => [
+            'Unknown audience' => [
                 [
                     'aud' => 'portal.ebi.ac.uk',
                 ], false
             ],
-            'Known audience token' => [
+            'Known audience' => [
                 [
                     'aud' => 'webapp.ebi.ac.uk'
                 ], true
             ],
-            'No subject token' => [
+            'No subject' => [
                 [
                     'sub' => null
                 ], false
             ],
-            'No email token' => [
+            'No email' => [
                 [
                     'email' => null
                 ], false
             ],
-            'No name token' => [
+            'No name' => [
                 [
                     'name' => null
                 ], false
             ],
-            'No nickname token' => [
+            'No nickname' => [
                 [
                     'nickname' => null
                 ], false

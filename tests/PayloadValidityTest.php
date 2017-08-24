@@ -11,7 +11,7 @@ use Jose\Checker\AudienceChecker;
 
 use PHPUnit\Framework\TestCase;
 
-class TokenTest extends TestCase
+class PayloadValidityTest extends TestCase
 {
     protected static $validator;
 
@@ -21,9 +21,11 @@ class TokenTest extends TestCase
     }
 
     /**
+ 	 * We are forced to validate tokens instead of payloads / claims because
+ 	 * of design decision in the JWT library.
      * @dataProvider tokenProvider
      */
-    public function testPayloads($token, $signatureIndex, $valid)
+    public function testPayload($token, $signatureIndex, $valid)
     {
         if (!$valid) {
             $this->expectException(Assert\InvalidArgumentException::class);

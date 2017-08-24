@@ -37,7 +37,7 @@ foreach (PayloadFactory::generatePayloads() as $name => $claims) {
         echo TokenPrinter::getPrettyPrinted($name, $token);
     }
 
-    echo '"' . str_pad($name . '" ', 46) . 'is' . $esc;
+    echo '"' . str_pad($name . '" ', 40) . 'is' . $esc;
 
     try {
         $validator->validate($token, $signature_index);
