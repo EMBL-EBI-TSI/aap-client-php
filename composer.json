@@ -15,7 +15,7 @@
     "Spomky-Labs/jose": "^7.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.5.0"
+    "phpunit/phpunit": "^7.0.0"
   },
   "autoload": {
     "psr-4": {
