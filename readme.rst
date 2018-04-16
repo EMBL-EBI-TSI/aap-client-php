@@ -46,7 +46,12 @@ In order to use this library add this git repository to ``composer.json``, like 
      }
    ],
    "require": {
-     "ebi/jwt": "^v0.2.0"
+     "ebi/jwt": "^v2.0.0"
    }
  }
 
+
+Compatibility
+^^^^^^^^^^^^^
+Versions v1.x.x are compatible with PHP 5.6, 7.0 and 7.1, v2.x.x with 7.1 and 7.2.
+This is due to breaking changes in 7.2 and the dependencies used.
