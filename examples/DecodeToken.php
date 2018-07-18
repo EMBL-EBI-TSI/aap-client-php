@@ -2,10 +2,7 @@
 /*
  * This can be used to manually check encoded tokens.
  * Just pass the encoded token as the argument, like so:
- *     php DecodeToken.php encodedToken
- * Note: by default uses the disposable public pem to verify
- *   the signature of the token, change it if you need to
- *   very tokens signed by another private key.
+ *     php DecodeToken.php <test/aap> encodedToken
  */
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -13,9 +10,11 @@ use AAP\Token\TokenPrinter;
 use AAP\Token\TokenDeserializer;
 use AAP\Token\TokenValidator;
 
-$deserializer = new TokenDeserializer(
-    __DIR__ . '/../crypto_files/disposable.public.pem'
-);
+$certs = [
+    'test' => 'disposable.public.pem',
+    'aap' => 'aap.public.pem'
+];
+
 $validator = new TokenValidator([]);
 
 $esc   = chr(27);
@@ -23,7 +22,12 @@ $print = true;
 
 try {
     $name = 'token';
-    $serialized_token = $argv[1];
+    $env = $argv[1];
+    $serialized_token = $argv[2];
+
+    $deserializer = new TokenDeserializer(
+        __DIR__ . '/../crypto_files/' . $certs[$env]
+    );
 
     list($token, $signature_index) =
         $deserializer->getToken($serialized_token);
