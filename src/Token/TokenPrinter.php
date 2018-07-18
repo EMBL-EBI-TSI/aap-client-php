@@ -6,17 +6,11 @@ class TokenPrinter
 {
     public static function getPrettyPrinted(
         $name,
-        $token,
-        $customClaims=['iss', 'aud', 'sub', 'exp', 'iat', 'email'])
+        $token
+    )
     {
-        $tokenClaims = array_keys($token->getClaims());
-        $claims = array_unique(array_merge($customClaims, $tokenClaims));
-
-
         $prettyprint = '"' . $name . '":' . PHP_EOL;
-        foreach ($claims as $claim) {
-            $prettyprint .= chr(9) . $claim . ': ' . ($token->hasClaim($claim) ? $token->getClaim($claim) : 'NIL') .  PHP_EOL;
-        }
-        return $prettyprint;
+        $prettyprint .= json_encode($token->getClaims(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        return $prettyprint . PHP_EOL;
     }
 }
